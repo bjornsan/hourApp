@@ -14,7 +14,7 @@ def read(fName):
         file = open(filename, "r")
         lines = file.readlines()
 	
-        print("Date:\t\tHours:\t\tTime:")	
+        print("Date:\t\tHours:\t\tTime:\t\tPrject:")	
 
         sum_hours = 0
         salary = 186
@@ -23,9 +23,9 @@ def read(fName):
             date = line.split(";")[0]
             hours = float( line.split(";")[1] )
             time = line.split(";")[2]
-            time = time[:-1]
+            project_code = line.split(";")[3]
             sum_hours = sum_hours + hours
-            print(f"{date}\t{hours}\t\t{time}")
+            print(f"{date}\t{hours}\t\t{time}\t\t{project_code} ")
 
         sum_salary = sum_hours*salary
         print()
