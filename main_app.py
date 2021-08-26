@@ -1,3 +1,7 @@
+# Copyright (c) 2021 Björn Andersson
+#
+# This work is licensed under the MIT license, see the file LICENSE for details.
+
 from add_hour_app import add as add
 from read_hour_app import read as read
 from datetime import date
