@@ -10,7 +10,8 @@ def add():
     project_code = input("Project code:\n>>")
     today = datetime.now()
     date_formatted = today.strftime("%d/%m/%Y")
-    formatted_string = f"{date_formatted};{hours};{when};{project_code}\n"
+    _,week,_ = today.isocalendar()
+    formatted_string = f"{week};{date_formatted};{hours};{when};{project_code}\n"
 
     this_month = today.strftime("%B")
     filename = f"/Users/bjornandersson/vim/work/hourApp/logs/log_{this_month}.txt"

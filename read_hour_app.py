@@ -14,18 +14,27 @@ def read(fName):
         file = open(filename, "r")
         lines = file.readlines()
 	
-        print("Date:\t\tHours:\t\tTime:\t\tPrject:")	
+        print("Week:\tDate:\t\tHours:\t\tTime:\t\tPrject:")	
 
         sum_hours = 0
         salary = 186
+        week = 0
 
         for line in lines:
-            date = line.split(";")[0]
-            hours = float( line.split(";")[1] )
-            time = line.split(";")[2]
-            project_code = line.split(";")[3]
-            sum_hours = sum_hours + hours
-            print(f"{date}\t{hours}\t\t{time}\t\t{project_code} ")
+            count = line.split(";")
+            if len(count) < 5:
+                date, hours, time, project_code = no_weeks(line)
+                sum_hours = sum_hours + hours
+                print(f"\t{date}\t{hours}\t\t{time}\t\t{project_code} ")
+            else:
+                read_week, date, hours, time, project_code = read_weeks(line)
+                sum_hours = sum_hours + hours
+                if read_week != week:
+                    week = read_week
+                    print(f"{week}\t{date}\t{hours}\t\t{time}\t\t{project_code} ")
+                    print("--------------------------------------------------------")
+                else:       
+                    print(f"\t{date}\t{hours}\t\t{time}\t\t{project_code} ")
 
         sum_salary = sum_hours*salary
         print()
@@ -40,3 +49,17 @@ def read(fName):
     else:
         print("file not available")
 
+def no_weeks(line):
+    date = line.split(";")[0]
+    hours = float( line.split(";")[1] )
+    time = line.split(";")[2]
+    project_code = line.split(";")[3]
+    return date, hours, time, project_code
+
+def read_weeks(line):
+    read_week = line.split(";")[0]
+    date = line.split(";")[1]
+    hours = float( line.split(";")[2] )
+    time = line.split(";")[3]
+    project_code = line.split(";")[4]
+    return read_week, date, hours, time, project_code
